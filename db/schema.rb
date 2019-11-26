@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2019_06_27_000637) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "arbitrages", force: :cascade do |t|
     t.bigint "user_id"
     t.string "buy_id"
