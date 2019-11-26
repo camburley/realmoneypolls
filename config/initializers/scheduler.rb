@@ -14,7 +14,7 @@ Dir["#{current_dir}/models/*.rb"].each { |file| require file }
 scheduler = Rufus::Scheduler.new
 uri = URI.parse("https://www.predictit.org/api/marketdata/all/")
 
-scheduler.every '2m' do
+scheduler.every '1m' do
   call = Net::HTTP.get_response(uri)
   data = JSON.parse(call.body)
   
@@ -77,7 +77,7 @@ while i < markets.count do
      Value.create(:contract_id => cID, :last_trade_price => cLastTradePrice, :best_buy_yes_offer => cBestBuyYes, :best_buy_no_offer => cBestBuyNo, :best_sell_yes_price => cBestSellYes, :best_sell_no_price => cBestSellNo, :last_close_price => cLastClose)
      addIt = cPricesCountUP + 1
      contract = Contract.where(:contract_id => cID)
-     contract.update_all(:totalValues => addIt)  
+     contract.update_all(:totalValues => addIt)
     else Contract.create(:status => cStatus, :contract_id => cID, :image => cImage, :name => cName, :long_name => cLongName, :date_end => cDateEnd, :market_id => mId, :totalValues => 0 )
     end
     
@@ -97,7 +97,7 @@ while i < markets.count do
 
 end 
 
-scheduler.every '30000m' do
+scheduler.every '1m' do
 
 
 
