@@ -14,7 +14,7 @@ Dir["#{current_dir}/models/*.rb"].each { |file| require file }
 scheduler = Rufus::Scheduler.new
 uri = URI.parse("https://www.predictit.org/api/marketdata/all/")
 
-scheduler.every '2m' do
+scheduler.every '4m' do
   call = Net::HTTP.get_response(uri)
   data = JSON.parse(call.body)
   
@@ -101,7 +101,7 @@ while i < markets.count do
 
 end 
 
-scheduler.every '2m' do
+scheduler.every '4m' do
 
 
 
